@@ -1,0 +1,21 @@
+function dxdt = circuit_dynamics_FE(t, x)
+    C1 = 1e-6;
+    C2 = 1e-3;
+    C3 = 1e-3;
+    R1 = 5;
+    L1 = 0.1;
+    RL = 1e3;
+    Vamp = 10;
+    freq = 60;
+    Isat = 1e-6;
+    kD = 40;
+    id = Isat*(exp(kD*x(1))-1);
+    Vin = Vamp*sin(2*pi*freq*t);
+    dxdt = zeros(4,1);
+    % d/dt(x1) = 1/C1*(1/R1(-x1-x2+10sin(2pi*f*t)) - id)
+    dxdt(1) = 1/C1*()
+    % d/dt(x2) = 1/C2*(1/R1(-x1-x2+10sin(2pi*f*t)) - x3)
+    % d/dt(x3) = 1/L1*(x2-x4)
+    % d/dt(x4) = 1/C3*(x3-x4/RL)
+end
+

@@ -1,0 +1,24 @@
+function F = circ_jacobian(x, t)
+    C1 = 1e-6;
+    C2 = 1e-3;
+    C3 = 1e-3;
+    R1 = 5;
+    L1 = 0.1;
+    RL = 1e3;
+    Vamp = 10;
+    freq = 60;
+    Isat = 1e-6;
+    kD = 40;
+    F = zeros(4);
+    % d/dt(x1) = 1/C1*(1/R1(-x1-x2+10sin(2pi*f*t)) - id)
+    F(1,1) = 1/C1*(-1/R1 - 40*Isat*exp(kD*x(1)));
+    F(1,2) = 1/C2*(-1/R1); %%?
+    % d/dt(x2) = 1/C2*(1/R1(-x1-x2+10sin(2pi*f*t)) - x3)
+    F(2,1) = 1/C2*(-R1);
+    F(2,2) = 1/C2*(-R1);
+    F(2,3) = -1/C2;
+    % d/dt(x3) = 1/L1*(x2-x4)
+    F(2,2) = 1/L1;
+    F(2,3) = 
+end
+
